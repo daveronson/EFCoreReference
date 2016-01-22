@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EFTesting.DAL;
-using EFTesting.Model;
 using Microsoft.Data.Entity;
 using EFTesting.App.Menu;
 using EFTesting.App.StudentManagement;
@@ -15,7 +10,6 @@ namespace EFTesting
     {
         public static int Main(string[] args)
         {
-            var context = new EFTestingContext();
             char MenuSelection;
 
             do
@@ -25,10 +19,10 @@ namespace EFTesting
                 switch (MenuSelection)
                 {
                     case '1':
-                        StudentMenuController.MenuHandler(context);
+                        StudentMenuController.MenuHandler();
                         break;
                     case '2':
-                        CourseMenuController.MenuHandler(context);
+                        CourseMenuController.MenuHandler();
                         break;
                     case '0':
                         break;

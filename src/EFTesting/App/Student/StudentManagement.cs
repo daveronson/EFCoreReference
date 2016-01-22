@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EFTesting.DAL;
 using EFTesting.Model;
 using EFTesting.App.Helper;
+using Microsoft.Data.Entity;
 
 namespace EFTesting.App.StudentManagement
 {
@@ -21,6 +22,19 @@ namespace EFTesting.App.StudentManagement
             }
         }
 
+        public static Student GetStudentByID(int studentID)
+        {
+            using (var context = new EFTestingContext())
+            {
+                var student = context.Student
+                    .Include(s => s.StudentCourses).ThenInclude(c => c.Course)
+                    .Where(s => s.ID == studentID)
+                    .FirstOrDefault();
+
+                return student;             
+            }
+        }
+
         public static List<Course> ListCourses(int studentID)
         {
             using (var context = new EFTestingContext())
@@ -33,85 +47,25 @@ namespace EFTesting.App.StudentManagement
             }
         }
 
-        public static void DeleteAll(EFTestingContext context)
+        public static void DeleteAll()
         {
-            SCHelper.ClearConsole();
-
-            Console.Write("Removing all Students from the database...");
-
-            try
+            using (var context = new EFTestingContext())
             {
                 context.Student.Clear();
                 context.SaveChanges();
-
-                Console.WriteLine("done.");
             }
-            catch
-            {
-                Console.WriteLine("error.");
-            }
-
-            Console.Write("\nPress any key to continue... ");
-            Console.ReadLine();
-
         }
 
-        public static void Create(EFTestingContext context)
+        public static void AddStudent(Student student)
         {
-            string _StudentName = "";
-
-            SCHelper.ClearConsole();
-
-            Console.WriteLine("Add a student:");
-            Console.Write("Name: ");
-
-            _StudentName = Console.ReadLine();
-
-            if (_StudentName != "")
+            using (var context = new EFTestingContext())
             {
-                Console.Write("Adding student to the database...");
-                var Student = new Student { Name = _StudentName };
-                try
+                if (student != null)
                 {
-                    context.Student.Add(Student);
+                    context.Student.Add(student);
                     context.SaveChanges();
-                    Console.WriteLine("done.");
-                }
-                catch
-                {
-                    Console.WriteLine("error.");
-                }
-
-                Console.Write("\nPress any key to continue... ");
-                Console.ReadLine();
-            }
-        }
-
-        public static void EnrollStudent(StudentCourse studentCourse)
-        {
-            if (studentCourse != null)
-            {
-                using (var context = new EFTestingContext())
-                {
-                    Student student = context.Student.FirstOrDefault(s => s.ID == studentCourse.StudentID);
-                    Course course = context.Course.FirstOrDefault(c => c.ID == studentCourse.CourseID);
-                    if (student != null && course != null)
-                    {
-                        //The student and course exist
-                        StudentCourse CurrentStudentCourses = context.StudentCourse
-                            .Where(sc => sc.StudentID == studentCourse.StudentID)
-                            .Where(sc => sc.CourseID == studentCourse.CourseID)
-                            .FirstOrDefault();
-                        if (CurrentStudentCourses == null)
-                        {
-                            //The student isn't currently enrolled so we are good to add them to the course
-                            context.StudentCourse.Add(studentCourse);
-                            context.SaveChanges();
-                        }
-                    }                    
                 }
             }
         }
-
     }
 }

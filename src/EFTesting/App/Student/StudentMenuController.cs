@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EFTesting.App.Menu;
-using EFTesting.DAL;
+using EFTesting.App.EnrollmentManagement;
 using EFTesting.View.StudentView;
+using EFTesting.View.EnrollmentView;
 using EFTesting.Model;
 
 namespace EFTesting.App.StudentManagement
 {
     public class StudentMenuController
     {
-        public static void MenuHandler(EFTestingContext context)
+        public static void MenuHandler()
         {
             char MenuSelection;
+            var student = new Student();
 
             do
             {
@@ -27,21 +29,29 @@ namespace EFTesting.App.StudentManagement
                         StudentView.ListStudentsView(students);
                         break;
                     case '2':
-                        var courses = new List<Course>();
-                        int studentID = StudentView.GetStudentID();
-                        courses = StudentManagement.ListCourses(studentID);
-                        StudentView.ListStudentCoursesView(courses);
+                        int studentID = StudentView.InputStudentIDView();
+                        student = StudentManagement.GetStudentByID(studentID);
+                        StudentView.ListStudentCoursesView(student);
                         break;
                     case '3':
-                        StudentManagement.Create(context);
+                        student = null;
+                        student = StudentView.AddStudentView();
+                        StudentManagement.AddStudent(student);
                         break;
                     case '4':
                         var studentCourse = new StudentCourse();
-                        studentCourse = StudentView.EnrollStudentView();
-                        StudentManagement.EnrollStudent(studentCourse);
+                        studentCourse = EnrollmentView.EnrollStudentView();
+                        Enrollment.EnrollStudent(studentCourse);
                         break;
                     case '5':
-                        StudentManagement.DeleteAll(context);
+                        if (StudentView.InputToDeleteAllView() == "y")
+                        {
+                            if (StudentView.InputAdminPasswordView() == "y")
+                            {
+                                StudentManagement.DeleteAll();
+                                StudentView.DeleteAllView();
+                            }                               
+                        }
                         break;
                     case '0':
                         break;

@@ -4,56 +4,89 @@ using System.Linq;
 using System.Threading.Tasks;
 using EFTesting.App.Helper;
 using EFTesting.Model;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace EFTesting.View.StudentView
 {
     public class StudentView
     {
-        public static void ListStudentsView(List<Student> students)
+        public static Student AddStudentView()
         {
-            int NumStudents;
+            string studentName = "";
+            var student = new Student();
 
             SCHelper.ClearConsole();
 
-            NumStudents = students.Count();
-            
-            if (NumStudents == 1)
+            Console.WriteLine("ADD A STUDENT");
+            Console.WriteLine("-------------");
+            Console.WriteLine("\n");
+            Console.Write("Name: ");
+
+            studentName = Console.ReadLine();
+            if (studentName != "")
             {
-                Console.WriteLine("\nThere is {0} student in the database:", NumStudents);
+                student.Name = studentName;
+                return student;
             }
             else
             {
-                Console.WriteLine("\nThere are {0} students in the database:", NumStudents);
-            }
-
-            foreach (var student in students)
-            {
-                Console.WriteLine("\tStudent: ID: {0}  - {1}", student.ID, student.Name);
-            }
-
-            Console.Write("\nPress any key to continue... ");
-            Console.ReadLine();
-
+                Console.WriteLine("Name is a required field.\n");
+                Console.Write("\nPress [Enter] key to continue... ");
+                Console.ReadLine();
+                return null;
+            }            
         }
 
-        public static int GetStudentID()
+        public static string InputAdminPasswordView()
         {
-            string ConsoleString = "";
+            string consoleString = "";
+            byte[] consoleStringData = new byte[1024];
+            byte[] data = new byte[1024];
+            string hash = "";
+            SHA512 shaM = new SHA512Managed();
+
+            SCHelper.ClearConsole();
+
+            Console.WriteLine("Enter the admin password: ");
+            consoleString = Console.ReadLine();
+
+            consoleStringData = Encoding.UTF8.GetBytes(consoleString);
+
+            data = shaM.ComputeHash(consoleStringData);
+            hash = Convert.ToBase64String(data);
+
+            if (hash == "dGxXUL/SxoVRoNjBE6vD+M2Vm9N0yI33UR8YAXKKz2z2NI9RIVZoY8hWhQygKsegtMPPtNxR+P9sAT3JXo2uSQ==")
+            {
+                return "y";
+            }
+            else
+            {
+                Console.WriteLine("\nInvalid password.\n");
+                Console.WriteLine("Press [Enter] to continue");
+                Console.ReadLine();
+                return "n";
+            }
+        }
+
+        public static int InputStudentIDView()
+        {
+            string consoleString = "";
             int StudentID;
             bool ValidStudentID;
 
             SCHelper.ClearConsole();
 
             Console.Write("Student ID: ");
-            ConsoleString = Console.ReadLine();
+            consoleString = Console.ReadLine();
 
-            if (ConsoleString != "")
+            if (consoleString != "")
             {
-                ValidStudentID = Int32.TryParse(ConsoleString, out StudentID);
+                ValidStudentID = Int32.TryParse(consoleString, out StudentID);
 
                 if (!ValidStudentID)
                 {
-                    Console.WriteLine("{0} is an invalid Student ID", ConsoleString);
+                    Console.WriteLine("{0} is an invalid Student ID", consoleString);
                     return 0;
                 }
             }
@@ -64,14 +97,41 @@ namespace EFTesting.View.StudentView
 
             return StudentID;
         }
-        public static void ListStudentCoursesView(List<Course> courses)
+
+        public static string InputToDeleteAllView()
         {
-            if (courses != null)
+            string consoleInput = "";
+
+            SCHelper.ClearConsole();
+
+            Console.WriteLine("Are you sure you want to delete them all? (y/n)");
+            consoleInput = Console.ReadLine();
+
+            if (consoleInput.ToLower() == "y")
             {
-                Console.WriteLine("\nThe student is enrolled in the following courses:");
-                foreach (var course in courses)
+                return consoleInput;
+            }
+            else
+            {
+                return "n";
+            }
+        }
+
+        public static void ListStudentCoursesView(Student student)
+        {
+            SCHelper.ClearConsole();
+
+            Console.WriteLine("LIST STUDENT'S COURSES");
+            Console.WriteLine("--------------------");
+            Console.WriteLine("\n");
+
+            if (student != null)
+            {
+                Console.WriteLine("{0} ({1}) is enrolled in the following courses:\n",student.Name, student.ID);
+                Console.WriteLine("\tCourse ID\tCourse Name");
+                foreach (var course in student.StudentCourses)
                 {
-                    Console.WriteLine("\t{0} - {1}", course.ID, course.Name);
+                    Console.WriteLine("\t{0}\t\t{1}", course.Course.ID, course.Course.Name);
                 }
             }
             else
@@ -79,9 +139,42 @@ namespace EFTesting.View.StudentView
                 Console.WriteLine("Student is not in the database");
             }
 
-            Console.Write("\nPress any key to continue... ");
+            Console.Write("\nPress [Enter] key to continue... ");
             Console.ReadLine();
         }
+
+        public static void ListStudentsView(List<Student> students)
+        {
+            int NumStudents;
+
+            SCHelper.ClearConsole();
+
+            NumStudents = students.Count();
+
+            Console.WriteLine("LIST STUDENTS");
+            Console.WriteLine("-------------");
+            Console.WriteLine("\n");
+            Console.WriteLine("Number of students: {0}", NumStudents);
+
+            Console.WriteLine("\tStudent ID\tName");
+            foreach (var student in students)
+            {
+                Console.WriteLine("\t{0}\t\t{1}", student.ID, student.Name);
+            }
+
+            Console.Write("\nPress any key to continue... ");
+            Console.ReadLine();
+
+        }
+        
+        public static void DeleteAllView()
+        {
+            SCHelper.ClearConsole();
+            Console.WriteLine("All students have been deleted.\n");
+            Console.WriteLine("Press [Enter] to continue");
+            Console.ReadLine();
+        }
+
         public static StudentCourse EnrollStudentView()
         {
             string ConsoleString = "";
@@ -103,7 +196,7 @@ namespace EFTesting.View.StudentView
             if (!ValidStudentID || !ValidCourseID)
             {
                 Console.WriteLine("Invalid Student ID or Course ID");
-                Console.Write("\nPress any key to continue... ");
+                Console.Write("\nPress [Enter] key to continue... ");
                 Console.ReadLine();
             }
             else

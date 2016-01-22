@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFTesting.App.EnrollmentManagement;
 using EFTesting.App.Menu;
-using EFTesting.DAL;
+using EFTesting.Model;
+using EFTesting.View.CourseView;
+using EFTesting.View.EnrollmentView;
+
 
 namespace EFTesting.App.CourseManagement
 {
     public class CourseMenuController
     {
-        public static void MenuHandler(EFTestingContext context)
+        public static void MenuHandler()
         {
             char MenuSelection;
+            var course = new Course();
 
             do
             {
@@ -20,19 +25,35 @@ namespace EFTesting.App.CourseManagement
                 switch (MenuSelection)
                 {
                     case '1':
-                        CourseManagement.List(context);
+                        var courses = new List<Course>();
+                        courses = CourseManagement.List();
+                        CourseView.ListCoursesView(courses);
                         break;
                     case '2':
-                        CourseManagement.ListStudents(context);
+                        course = null;
+                        int courseID = CourseView.InputCourseIDView();
+                        course = CourseManagement.GetCourseByID(courseID);
+                        CourseView.ListStudentsEnrolledInCourse(course);
                         break;
                     case '3':
-                        CourseManagement.Create(context);
+                        course = null;
+                        course = CourseView.AddCourseView();
+                        CourseManagement.AddCourse(course);
                         break;
                     case '4':
-                        CourseManagement.EnrollStudent(context);
+                        var studentCourse = new StudentCourse();
+                        studentCourse = EnrollmentView.EnrollStudentView();
+                        Enrollment.EnrollStudent(studentCourse);
                         break;
                     case '5':
-                        CourseManagement.DeleteAll(context);
+                        if (CourseView.InputToDeleteAllView() == "y")
+                        {
+                            if (CourseView.InputAdminPasswordView() == "y")
+                            {
+                                CourseManagement.DeleteAll();
+                                CourseView.DeleteAllView();
+                            }
+                        }
                         break;
                     case '0':
                         break;
