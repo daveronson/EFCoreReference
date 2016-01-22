@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EFTesting.Model;
-using EFTesting.App.Helper;
+using EFCoreRef.Model;
+using EFCoreRef.App.Helper;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EFTesting.View.CourseView
+namespace EFCoreRef.View.CourseView
 {
     public class CourseView
     {

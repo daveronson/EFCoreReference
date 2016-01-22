@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.Data.Entity;
-using EFTesting.App.Menu;
-using EFTesting.App.StudentManagement;
-using EFTesting.App.CourseManagement;
+using EFCoreRef.App.Menu;
+using EFCoreRef.App.StudentManagement;
+using EFCoreRef.App.CourseManagement;
 
-namespace EFTesting
+namespace EFCoreRef
 {
     public class Program
     {

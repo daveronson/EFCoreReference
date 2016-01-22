@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EFTesting.App.Helper;
+using EFCoreRef.App.Helper;
 
-namespace EFTesting.App.Menu
+namespace EFCoreRef.App.Menu
 {
     public class CourseMenu
     {

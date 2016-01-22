@@ -3,11 +3,11 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using EFTesting.DAL;
+using EFCoreRef.DAL;
 
 namespace eftesting.Migrations
 {
-    [DbContext(typeof(EFTestingContext))]
+    [DbContext(typeof(EFCoreRefContext))]
     [Migration("20151229165838_AddManytoManyFluent")]
     partial class AddManytoManyFluent
     {

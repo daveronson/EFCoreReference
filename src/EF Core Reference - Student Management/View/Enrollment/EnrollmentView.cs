@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EFTesting.Model;
-using EFTesting.App.Helper;
+using EFCoreRef.Model;
+using EFCoreRef.App.Helper;
 
-namespace EFTesting.View.EnrollmentView
+namespace EFCoreRef.View.EnrollmentView
 {
     public class EnrollmentView
     {

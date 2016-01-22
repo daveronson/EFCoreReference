@@ -4,9 +4,9 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using EFTesting.DAL;
+using EFCoreRef.DAL;
 
-namespace EFTesting
+namespace EFCoreRef
 {
     public class Startup
     {
@@ -35,7 +35,7 @@ namespace EFTesting
             
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<EFTestingContext>(options =>
+                .AddDbContext<EFCoreRefContext>(options =>
                     options.UseSqlServer(Configuration["Data:EFTestingConnection:ConnectionString"]));
 
         }

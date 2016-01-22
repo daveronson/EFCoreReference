@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EFTesting.DAL;
-using EFTesting.Model;
-using EFTesting.App.Helper;
+using EFCoreRef.DAL;
+using EFCoreRef.Model;
+using EFCoreRef.App.Helper;
 using Microsoft.Data.Entity;
 
-namespace EFTesting.App.StudentManagement
+namespace EFCoreRef.App.StudentManagement
 {
     public class StudentManagement
     {
         public static List<Student> List()
         {
             
-            using (var context = new EFTestingContext())
+            using (var context = new EFCoreRefContext())
             {
                 var students = context.Student
                     .ToList();
@@ -24,7 +24,7 @@ namespace EFTesting.App.StudentManagement
 
         public static Student GetStudentByID(int studentID)
         {
-            using (var context = new EFTestingContext())
+            using (var context = new EFCoreRefContext())
             {
                 var student = context.Student
                     .Include(s => s.StudentCourses).ThenInclude(c => c.Course)
@@ -37,7 +37,7 @@ namespace EFTesting.App.StudentManagement
 
         public static List<Course> ListCourses(int studentID)
         {
-            using (var context = new EFTestingContext())
+            using (var context = new EFCoreRefContext())
             {
                 //Get courses where the studentID is in the StudentCourses join table
                 var StudentCourses = context.Course
@@ -49,7 +49,7 @@ namespace EFTesting.App.StudentManagement
 
         public static void DeleteAll()
         {
-            using (var context = new EFTestingContext())
+            using (var context = new EFCoreRefContext())
             {
                 context.Student.Clear();
                 context.SaveChanges();
@@ -58,7 +58,7 @@ namespace EFTesting.App.StudentManagement
 
         public static void AddStudent(Student student)
         {
-            using (var context = new EFTestingContext())
+            using (var context = new EFCoreRefContext())
             {
                 if (student != null)
                 {

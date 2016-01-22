@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using EFTesting.Model;
-using EFTesting.DAL;
+using EFCoreRef.Model;
+using EFCoreRef.DAL;
 
-namespace EFTesting.App.EnrollmentManagement
+namespace EFCoreRef.App.EnrollmentManagement
 {
     public class Enrollment
     {
@@ -10,7 +10,7 @@ namespace EFTesting.App.EnrollmentManagement
         {
             if (studentCourse != null)
             {
-                using (var context = new EFTestingContext())
+                using (var context = new EFCoreRefContext())
                 {
                     Student student = context.Student.FirstOrDefault(s => s.ID == studentCourse.StudentID);
                     Course course = context.Course.FirstOrDefault(c => c.ID == studentCourse.CourseID);

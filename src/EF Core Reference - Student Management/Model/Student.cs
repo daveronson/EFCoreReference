@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EFTesting.Model
+namespace EFCoreRef.Model
 {
     public class Student
     {

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EFTesting.App.EnrollmentManagement;
-using EFTesting.App.Menu;
-using EFTesting.Model;
-using EFTesting.View.CourseView;
-using EFTesting.View.EnrollmentView;
+using EFCoreRef.App.EnrollmentManagement;
+using EFCoreRef.App.Menu;
+using EFCoreRef.Model;
+using EFCoreRef.View.CourseView;
+using EFCoreRef.View.EnrollmentView;
 
 
-namespace EFTesting.App.CourseManagement
+namespace EFCoreRef.App.CourseManagement
 {
     public class CourseMenuController
     {

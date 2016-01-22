@@ -1,9 +1,9 @@
 ﻿using Microsoft.Data.Entity;
-using EFTesting.Model;
+using EFCoreRef.Model;
 
-namespace EFTesting.DAL
+namespace EFCoreRef.DAL
 {
-    public class EFTestingContext : DbContext
+    public class EFCoreRefContext : DbContext
     {
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
