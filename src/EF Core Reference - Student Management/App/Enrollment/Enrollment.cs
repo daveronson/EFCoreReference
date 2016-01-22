@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using EFCoreRef.DAL;
 using EFCoreRef.Model;
-using EFCoreRef.DAL;
+using System.Linq;
 
 namespace EFCoreRef.App.EnrollmentManagement
 {

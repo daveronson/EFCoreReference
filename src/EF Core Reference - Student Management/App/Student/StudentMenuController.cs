@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EFCoreRef.App.EnrollmentManagement;
 using EFCoreRef.App.Menu;
-using EFCoreRef.App.EnrollmentManagement;
-using EFCoreRef.View.StudentView;
-using EFCoreRef.View.EnrollmentView;
 using EFCoreRef.Model;
+using EFCoreRef.View.EnrollmentView;
+using EFCoreRef.View.StudentView;
+using System;
+using System.Collections.Generic;
 
 namespace EFCoreRef.App.StudentManagement
 {

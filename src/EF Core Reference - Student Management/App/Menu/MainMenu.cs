@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EFCoreRef.App.Helper;
+﻿using EFCoreRef.App.Helper;
+using System;
 
 namespace EFCoreRef.App.Menu
 {

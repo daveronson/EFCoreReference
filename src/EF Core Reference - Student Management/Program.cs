@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.Data.Entity;
+﻿using EFCoreRef.App.CourseManagement;
 using EFCoreRef.App.Menu;
 using EFCoreRef.App.StudentManagement;
-using EFCoreRef.App.CourseManagement;
+using Microsoft.Data.Entity;
+using System;
 
 namespace EFCoreRef
 {

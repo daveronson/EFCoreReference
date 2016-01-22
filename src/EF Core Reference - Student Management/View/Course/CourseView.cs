@@ -1,9 +1,8 @@
-﻿using System;
+﻿using EFCoreRef.App.Helper;
+using EFCoreRef.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using EFCoreRef.Model;
-using EFCoreRef.App.Helper;
 using System.Security.Cryptography;
 using System.Text;
 

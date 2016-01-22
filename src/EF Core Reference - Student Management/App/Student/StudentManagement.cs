@@ -1,11 +1,8 @@
-﻿using System;
+﻿using EFCoreRef.DAL;
+using EFCoreRef.Model;
+using Microsoft.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using EFCoreRef.DAL;
-using EFCoreRef.Model;
-using EFCoreRef.App.Helper;
-using Microsoft.Data.Entity;
 
 namespace EFCoreRef.App.StudentManagement
 {

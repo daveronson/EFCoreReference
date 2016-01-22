@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.Entity;
-using EFCoreRef.Model;
+﻿using EFCoreRef.Model;
+using Microsoft.Data.Entity;
 
 namespace EFCoreRef.DAL
 {
