@@ -1,7 +1,7 @@
 {
-  "userSecretsId": "aspnet5-EFTesting-7ba946dc-2f4c-4689-bcd6-3dac375f4497",
+  "userSecretsId": "aspnet5-EFCoreRef-7ba946dc-2f4c-4689-bcd6-3dac375f4497",
   "version": "1.0.0-*",
-  "description": "EFTesting Console Application",
+  "description": "EFCoreRef Console Application",
   "authors": [ "Dave Ronson" ],
   "tags": [ "" ],
   "projectUrl": "",
@@ -22,7 +22,7 @@
   },
 
   "commands": {
-    "EFTesting": "EFTesting",
+    "EFCoreRefConsole": "EFCoreRefConsole",
     "ef": "EntityFramework.Commands"
   },
 

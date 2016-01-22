@@ -23,7 +23,7 @@ namespace EFCoreRef.DAL
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(@"Server = DRONSONWK; Database = EFTesting; User Id = EFTesting; Password = testing123;");
+            options.UseSqlServer(@"Server = DRONSONWK; Database = EFCoreRef; User Id = EFCoreRefDBO; Password = testing123;");
         }
 
         public DbSet<Student> Student { get; set; }

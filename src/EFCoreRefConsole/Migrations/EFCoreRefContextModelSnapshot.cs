@@ -1,14 +1,12 @@
-using System;
+using EFCoreRef.DAL;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
-using EFCoreRef.DAL;
 
-namespace eftesting.Migrations
+namespace EFCoreRef.Migrations
 {
     [DbContext(typeof(EFCoreRefContext))]
-    partial class EFTestingContextModelSnapshot : ModelSnapshot
+    partial class EFCoreRefContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -16,7 +14,7 @@ namespace eftesting.Migrations
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EFTesting.Model.Course", b =>
+            modelBuilder.Entity("EFCoreRef.Model.Course", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
@@ -26,7 +24,7 @@ namespace eftesting.Migrations
                     b.HasKey("ID");
                 });
 
-            modelBuilder.Entity("EFTesting.Model.Student", b =>
+            modelBuilder.Entity("EFCoreRef.Model.Student", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
@@ -36,7 +34,7 @@ namespace eftesting.Migrations
                     b.HasKey("ID");
                 });
 
-            modelBuilder.Entity("EFTesting.Model.StudentCourse", b =>
+            modelBuilder.Entity("EFCoreRef.Model.StudentCourse", b =>
                 {
                     b.Property<int>("StudentID");
 
@@ -45,13 +43,13 @@ namespace eftesting.Migrations
                     b.HasKey("StudentID", "CourseID");
                 });
 
-            modelBuilder.Entity("EFTesting.Model.StudentCourse", b =>
+            modelBuilder.Entity("EFCoreRef.Model.StudentCourse", b =>
                 {
-                    b.HasOne("EFTesting.Model.Course")
+                    b.HasOne("EFCoreRef.Model.Course")
                         .WithMany()
                         .HasForeignKey("CourseID");
 
-                    b.HasOne("EFTesting.Model.Student")
+                    b.HasOne("EFCoreRef.Model.Student")
                         .WithMany()
                         .HasForeignKey("StudentID");
                 });

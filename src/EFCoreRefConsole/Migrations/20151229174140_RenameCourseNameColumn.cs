@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
 
-namespace eftesting.Migrations
+namespace EFCoreRef.Migrations
 {
     public partial class RenameCourseNameColumn : Migration
     {

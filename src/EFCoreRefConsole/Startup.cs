@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using EFCoreRef.DAL;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using EFCoreRef.DAL;
 
 namespace EFCoreRef
 {
@@ -36,7 +34,7 @@ namespace EFCoreRef
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<EFCoreRefContext>(options =>
-                    options.UseSqlServer(Configuration["Data:EFTestingConnection:ConnectionString"]));
+                    options.UseSqlServer(Configuration["Data:EFCoreRefConnection:ConnectionString"]));
 
         }
     }
