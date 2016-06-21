@@ -62,7 +62,7 @@ namespace EFCoreRef.View.CourseView
             byte[] consoleStringData = new byte[1024];
             byte[] data = new byte[1024];
             string hash = "";
-            SHA512 shaM = new SHA512Managed();
+            SHA512 shaM = SHA512.Create();
 
             SCHelper.ClearConsole();
 

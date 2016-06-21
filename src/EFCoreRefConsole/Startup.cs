@@ -1,25 +1,30 @@
 ﻿using EFCoreRef.DAL;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 
 namespace EFCoreRef
 {
     public class Startup
     {
+        private readonly IHostingEnvironment hostingEnvironment;
         public Startup(IHostingEnvironment env)
         {
+            hostingEnvironment = env;
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                //builder.AddUserSecrets();
             }
+
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -30,11 +35,11 @@ namespace EFCoreRef
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            
-            services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<EFCoreRefContext>(options =>
-                    options.UseSqlServer(Configuration["Data:EFCoreRefConnection:ConnectionString"]));
+
+            var EFCoreRefConnectionString = "Data Source=" + Path.Combine(hostingEnvironment.ContentRootPath, "DB/efcoreref.db");
+
+            services.AddDbContext<EFCoreRefContext>(builder =>
+                builder.UseSqlite(EFCoreRefConnectionString));
 
         }
     }

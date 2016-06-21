@@ -1,10 +1,11 @@
 ﻿using EFCoreRef.Model;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreRef.DAL
 {
     public class EFCoreRefContext : DbContext
     {
+
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             base.OnModelCreating(modelbuilder);
@@ -23,7 +24,8 @@ namespace EFCoreRef.DAL
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(@"Server = DRONSONWK; Database = EFCoreRef; User Id = EFCoreRefDBO; Password = testing123;");
+            var EFCoreRefConnectionString = "Data Source=/Dev/Projects/EFCoreReference/src/EFCoreRefConsole/DB/efcoreref.db";
+            options.UseSqlite(EFCoreRefConnectionString);
         }
 
         public DbSet<Student> Student { get; set; }

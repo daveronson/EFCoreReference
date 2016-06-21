@@ -1,7 +1,7 @@
 ﻿using EFCoreRef.App.CourseManagement;
 using EFCoreRef.App.Menu;
 using EFCoreRef.App.StudentManagement;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace EFCoreRef

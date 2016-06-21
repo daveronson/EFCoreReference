@@ -1,9 +1,11 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using EFCoreRef.DAL;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
 
-namespace EFCoreRef.Migrations
+namespace EFCoreRefConsole.Migrations
 {
     [DbContext(typeof(EFCoreRefContext))]
     partial class EFCoreRefContextModelSnapshot : ModelSnapshot
@@ -11,8 +13,7 @@ namespace EFCoreRef.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "1.0.0-rc2-20901");
 
             modelBuilder.Entity("EFCoreRef.Model.Course", b =>
                 {
@@ -22,6 +23,8 @@ namespace EFCoreRef.Migrations
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
+
+                    b.ToTable("Course");
                 });
 
             modelBuilder.Entity("EFCoreRef.Model.Student", b =>
@@ -32,6 +35,8 @@ namespace EFCoreRef.Migrations
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
+
+                    b.ToTable("Student");
                 });
 
             modelBuilder.Entity("EFCoreRef.Model.StudentCourse", b =>
@@ -41,17 +46,25 @@ namespace EFCoreRef.Migrations
                     b.Property<int>("CourseID");
 
                     b.HasKey("StudentID", "CourseID");
+
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("StudentCourse");
                 });
 
             modelBuilder.Entity("EFCoreRef.Model.StudentCourse", b =>
                 {
                     b.HasOne("EFCoreRef.Model.Course")
                         .WithMany()
-                        .HasForeignKey("CourseID");
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EFCoreRef.Model.Student")
                         .WithMany()
-                        .HasForeignKey("StudentID");
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
