@@ -1,5 +1,4 @@
-﻿using EFCoreRef.App.Helper;
-using EFCoreRef.Model;
+﻿using EFCoreRef.Model;
 using System;
 
 namespace EFCoreRef.View.EnrollmentView
@@ -13,7 +12,7 @@ namespace EFCoreRef.View.EnrollmentView
             bool validStudentID, validCourseID = false;
             var studentCourse = new StudentCourse();
 
-            SCHelper.ClearConsole();
+            Console.Clear();
             Console.WriteLine("Add Student to Course:");
 
             Console.Write("Student ID: ");

@@ -1,5 +1,4 @@
-﻿using EFCoreRef.App.Helper;
-using System;
+﻿using System;
 
 namespace EFCoreRef.App.Menu
 {
@@ -7,7 +6,8 @@ namespace EFCoreRef.App.Menu
     {
         public static char Display()
         {
-            SCHelper.ClearConsole();
+
+            Console.Clear();
 
             Console.WriteLine("1 - List all Courses");
             Console.WriteLine("2 - List all Students for a Course");

@@ -24,7 +24,7 @@ namespace EFCoreRef.DAL
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var EFCoreRefConnectionString = "Data Source=/Dev/Projects/EFCoreReference/src/EFCoreRefConsole/DB/efcoreref.db";
+            var EFCoreRefConnectionString = "Data Source=efcoreref.db";
             options.UseSqlite(EFCoreRefConnectionString);
         }
 

@@ -36,7 +36,7 @@ namespace EFCoreRef
         {
             // Add framework services.
 
-            var EFCoreRefConnectionString = "Data Source=" + Path.Combine(hostingEnvironment.ContentRootPath, "DB/efcoreref.db");
+            var EFCoreRefConnectionString = "Data Source=efcoreref.db";
 
             services.AddDbContext<EFCoreRefContext>(builder =>
                 builder.UseSqlite(EFCoreRefConnectionString));

@@ -1,5 +1,4 @@
-﻿using EFCoreRef.App.Helper;
-using EFCoreRef.Model;
+﻿using EFCoreRef.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace EFCoreRef.View.StudentView
             string studentName = "";
             var student = new Student();
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("ADD A STUDENT");
             Console.WriteLine("-------------");
@@ -45,7 +44,7 @@ namespace EFCoreRef.View.StudentView
             string hash = "";
             SHA512 shaM = SHA512.Create();
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("Enter the admin password: ");
             consoleString = Console.ReadLine();
@@ -74,7 +73,7 @@ namespace EFCoreRef.View.StudentView
             int StudentID;
             bool ValidStudentID;
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.Write("Student ID: ");
             consoleString = Console.ReadLine();
@@ -101,7 +100,7 @@ namespace EFCoreRef.View.StudentView
         {
             string consoleInput = "";
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("Are you sure you want to delete them all? (y/n)");
             consoleInput = Console.ReadLine();
@@ -118,7 +117,7 @@ namespace EFCoreRef.View.StudentView
 
         public static void ListStudentCoursesView(Student student)
         {
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("LIST STUDENT'S COURSES");
             Console.WriteLine("--------------------");
@@ -146,7 +145,7 @@ namespace EFCoreRef.View.StudentView
         {
             int NumStudents;
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             NumStudents = students.Count();
 
@@ -168,7 +167,7 @@ namespace EFCoreRef.View.StudentView
         
         public static void DeleteAllView()
         {
-            SCHelper.ClearConsole();
+            Console.Clear();
             Console.WriteLine("All students have been deleted.\n");
             Console.WriteLine("Press [Enter] to continue");
             Console.ReadLine();
@@ -181,7 +180,7 @@ namespace EFCoreRef.View.StudentView
             bool ValidStudentID, ValidCourseID = false;
             var studentCourse = new StudentCourse();
 
-            SCHelper.ClearConsole();
+            Console.Clear();
             Console.WriteLine("Add Student to Course:");           
 
             Console.Write("Student ID: ");

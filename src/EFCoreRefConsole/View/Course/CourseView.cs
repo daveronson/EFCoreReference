@@ -1,5 +1,4 @@
-﻿using EFCoreRef.App.Helper;
-using EFCoreRef.Model;
+﻿using EFCoreRef.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace EFCoreRef.View.CourseView
             string courseName = "";
             var course = new Course();
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("ADD A COURSE");
             Console.WriteLine("------------");
@@ -39,7 +38,7 @@ namespace EFCoreRef.View.CourseView
         }
         public static void ListCoursesView(List<Course> courses)
         {
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("LIST COURSES");
             Console.WriteLine("------------");
@@ -64,7 +63,7 @@ namespace EFCoreRef.View.CourseView
             string hash = "";
             SHA512 shaM = SHA512.Create();
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("Enter the admin password: ");
             consoleString = Console.ReadLine();
@@ -92,7 +91,7 @@ namespace EFCoreRef.View.CourseView
             int courseID;
             bool validCourseID;
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.Write("Course ID: ");
             consoleString = Console.ReadLine();
@@ -117,7 +116,7 @@ namespace EFCoreRef.View.CourseView
         }
         public static void ListStudentsEnrolledInCourse(Course course)
         {
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("LIST STUDENTS ENROLLED IN COURSE");
             Console.WriteLine("--------------------------------");
@@ -144,7 +143,7 @@ namespace EFCoreRef.View.CourseView
         {
             string consoleInput = "";
 
-            SCHelper.ClearConsole();
+            Console.Clear();
 
             Console.WriteLine("Are you sure you want to delete them all? (y/n)");
             consoleInput = Console.ReadLine();
@@ -161,7 +160,7 @@ namespace EFCoreRef.View.CourseView
         }
         public static void DeleteAllView()
         {
-            SCHelper.ClearConsole();
+            Console.Clear();
             Console.WriteLine("All courses have been deleted.\n");
             Console.WriteLine("Press [Enter] to continue");
             Console.ReadLine();
