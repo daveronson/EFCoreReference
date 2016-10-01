@@ -13,7 +13,7 @@ namespace EFCoreRefConsole.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rc2-20896");
+                .HasAnnotation("ProductVersion", "1.0.1");
 
             modelBuilder.Entity("EFCoreRef.Model.Course", b =>
                 {
@@ -56,13 +56,13 @@ namespace EFCoreRefConsole.Migrations
 
             modelBuilder.Entity("EFCoreRef.Model.StudentCourse", b =>
                 {
-                    b.HasOne("EFCoreRef.Model.Course")
-                        .WithMany()
+                    b.HasOne("EFCoreRef.Model.Course", "Course")
+                        .WithMany("StudentCourses")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EFCoreRef.Model.Student")
-                        .WithMany()
+                    b.HasOne("EFCoreRef.Model.Student", "Student")
+                        .WithMany("StudentCourses")
                         .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
