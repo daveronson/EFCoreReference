@@ -1,7 +1,5 @@
 #!/bin/bash
 #Updates the local SQLite database using the latest migration scripts
-#mkdir DB
-#rm ./DB/*.db
 find . -name "*.db" -type f -delete
 rm ./Migrations/*
 dotnet ef migrations add Initial -o Migrations -c EFCoreRefContext
