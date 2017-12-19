@@ -9,33 +9,15 @@ namespace EFCoreRef
 {
     public class Startup
     {
-        private readonly IHostingEnvironment hostingEnvironment;
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            hostingEnvironment = env;
-            // Set up configuration sources.
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                //builder.AddUserSecrets();
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-
             var EFCoreRefConnectionString = "Data Source=efcoreref.db";
 
             services.AddDbContext<EFCoreRefContext>(builder =>
