@@ -43,8 +43,7 @@ namespace EFCoreRef.App.CourseManagement
                         break;
                     //Enroll student in a course
                     case '4':
-                        var studentCourse = new StudentCourse();
-                        studentCourse = EnrollmentView.EnrollStudentView();
+                        var studentCourse = EnrollmentView.EnrollStudentView();
                         Enrollment.EnrollStudent(studentCourse);
                         break;
                     //Delete all courses

@@ -35,14 +35,12 @@ namespace EFCoreRef.App.StudentManagement
                         break;
                     //Add a student
                     case '3':
-                        student = null;
                         student = StudentView.AddStudentView();
                         StudentManagement.AddStudent(student);
                         break;
                     //Enroll a student in a course
                     case '4':
-                        var studentCourse = new StudentCourse();
-                        studentCourse = EnrollmentView.EnrollStudentView();
+                        var studentCourse = EnrollmentView.EnrollStudentView();
                         Enrollment.EnrollStudent(studentCourse);
                         break;
                     //Delete all students

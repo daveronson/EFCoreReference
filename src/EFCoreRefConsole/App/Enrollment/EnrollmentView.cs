@@ -1,28 +1,25 @@
 ﻿using EFCoreRef.Model;
+using EFCoreRefConsole.App.Enrollment;
 using System;
 
 namespace EFCoreRef.View.EnrollmentView
 {
     public class EnrollmentView
     {
-        public static StudentCourse EnrollStudentView()
+        public static EnrollmentViewModel EnrollStudentView()
         {
-            string consoleInput = "";
-            int studentID, courseID;
-            bool validStudentID, validCourseID = false;
-            var studentCourse = new StudentCourse();
-
             Console.Clear();
             Console.WriteLine("Add Student to Course:");
 
             Console.Write("Student ID: ");
-            consoleInput = Console.ReadLine();
-            validStudentID = Int32.TryParse(consoleInput, out studentID);
+            var consoleInput = Console.ReadLine();
+            var validStudentID = Int32.TryParse(consoleInput, out int studentID);
 
             Console.Write("Course ID: ");
             consoleInput = Console.ReadLine();
-            validCourseID = Int32.TryParse(consoleInput, out courseID);
+            var validCourseID = int.TryParse(consoleInput, out int courseID);
 
+            var studentCourse = new EnrollmentViewModel();
             if (!validStudentID || !validCourseID)
             {
                 Console.WriteLine("Invalid Student ID or Course ID");
@@ -34,8 +31,8 @@ namespace EFCoreRef.View.EnrollmentView
                 studentCourse.StudentID = studentID;
                 studentCourse.CourseID = courseID;
             }
-            return studentCourse;
 
+            return studentCourse;
         }
     }
 }

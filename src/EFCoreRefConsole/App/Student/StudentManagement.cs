@@ -9,8 +9,7 @@ namespace EFCoreRef.App.StudentManagement
     public class StudentManagement
     {
         public static List<Student> List()
-        {
-            
+        {            
             using (var context = new EFCoreRefContext())
             {
                 var students = context.Student
